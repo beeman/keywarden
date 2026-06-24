@@ -1,5 +1,6 @@
 {
   "name": "@keywarden/db",
+  "private": true,
   "type": "module",
   "exports": {
     ".": {

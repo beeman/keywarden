@@ -1,0 +1,52 @@
+{
+  "bin": {
+    "keywarden": "dist/cli.mjs"
+  },
+  "description": "Keywarden command-line interface.",
+  "devDependencies": {
+    "@keywarden/config": "workspace:*",
+    "@types/bun": "catalog:",
+    "@types/node": "catalog:",
+    "tsdown": "^0.21.7",
+    "typescript": "catalog:"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "name": "keywarden",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "packages/cli",
+    "type": "git",
+    "url": "git+https://github.com/beeman/keywarden.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "check-types": "tsc -p tsconfig.json --noEmit",
+    "test": "bun test test/*.test.ts"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "types": "./dist/index.d.mts",
+  "version": "0.0.0"
+}
