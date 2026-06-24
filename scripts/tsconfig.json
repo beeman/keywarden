@@ -1,0 +1,4 @@
+{
+  "extends": "@keywarden/config/tsconfig.base.json",
+  "include": ["*.ts"]
+}

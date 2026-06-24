@@ -1,0 +1,3 @@
+{
+  "extends": "@keywarden/config/tsconfig.base.json"
+}

@@ -1,0 +1,6 @@
+{
+  "extends": "@keywarden/config/tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true
+  }
+}

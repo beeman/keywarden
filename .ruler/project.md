@@ -1,0 +1,70 @@
+# Better-T-Stack Project Rules
+
+This is a keywarden project created with Better-T-Stack CLI.
+
+## Project Structure
+
+This is a monorepo with the following structure:
+
+- **`apps/api/`** - Backend API (Hono)
+
+- **`apps/mobile/`** - React Native mobile app (with Uniwind)
+
+- **`apps/web/`** - Frontend application (TanStack Start)
+
+- **`packages/api/`** - Shared API logic and types
+- **`packages/auth/`** - Authentication logic and utilities
+- **`packages/db/`** - Database schema and utilities
+- **`packages/env/`** - Shared environment variables and validation
+- **`packages/config/`** - Shared TypeScript configuration
+
+## Available Scripts
+
+- `bun run dev` - Start all apps in development mode
+- `bun run dev:api` - Start only the api
+- `bun run dev:mobile` - Start only the mobile app
+- `bun run dev:web` - Start only the web app
+- `bun run build` - Build all apps
+- `bun run lint` - Lint all packages
+- `bun run check-types` - Type check all packages
+
+## Database Commands
+
+All database operations should be run from the root:
+
+- `bun run db:push` - Push schema changes to database
+- `bun run db:studio` - Open database studio
+- `bun run db:generate` - Generate Drizzle files
+- `bun run db:migrate` - Run database migrations
+
+Database schema files are located in `packages/db/src/schema/`
+
+## API Structure
+
+- oRPC contracts and routers are in `packages/api/src/`
+- Client-side oRPC client is in `apps/web/src/utils/orpc.ts`
+
+## Authentication
+
+Authentication is powered by Better Auth:
+
+- Auth configuration is in `packages/auth/src/`
+- Mobile app auth client is in `apps/mobile/src/lib/auth-client.ts`
+- Web app auth client is in `apps/web/src/lib/auth-client.ts`
+
+## Key Points
+
+- This is a Turborepo monorepo using bun workspaces
+- Each app has its own `package.json` and dependencies
+- Run commands from the root to execute across all workspaces
+- Run workspace-specific commands with `bun run command-name`
+- Turborepo handles build caching and parallel execution
+- Git hooks are configured with Lefthook for pre-commit checks
+
+## Agent Behavioral Rules
+
+- **Strict Adherence to Instructions:** Always use the specific hooks, functions, or tools requested by the user (e.g., if asked to use `signIn` from `useMobileWallet`, do not use `transact` instead).
+- **No Autonomous Deviations:** Never take an alternative implementation path ("freewheeling") even if a technical limitation or "better" way is perceived.
+- **Proactive Clarification:** If a requested instruction seems technically impossible, problematic, or if critical info is missing, STOP immediately and ask for clarification or guidance.
+- **You are NOT the Boss:** Stick strictly to what is asked. Do not tweak or refactor unrelated code unless explicitly requested.
+- **Verify After Editing:** Always run `bun run check-types` and `bun run lint:fix` after editing code to catch type errors and fix formatting issues before considering the task complete.

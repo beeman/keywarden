@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "extends": "@keywarden/config/tsconfig.base.json"
+}
