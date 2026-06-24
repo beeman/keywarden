@@ -4,9 +4,13 @@
   "baseBranch": "main",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [],
+  "fixed": [["keywarden", "@keywarden/*"]],
   "ignore": [],
   "linked": [],
+  "privatePackages": {
+    "tag": false,
+    "version": false
+  },
   "snapshot": {
     "useCalculatedVersion": true
   },

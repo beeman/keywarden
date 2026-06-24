@@ -1,5 +1,6 @@
 ---
+"@keywarden/solana-client": patch
 "keywarden": patch
 ---
 
-Add the initial Keywarden CLI package.
+Add the initial publishable Keywarden packages.
