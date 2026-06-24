@@ -1,19 +1,32 @@
 {
   "dependencies": {
-    "@solana/kit": "catalog:",
-    "@solana/kit-plugin-rpc": "catalog:"
+    "@solana/kit": "^6.9.0",
+    "@solana/kit-plugin-rpc": "^0.11.1"
   },
+  "description": "Solana client utilities for Keywarden.",
   "devDependencies": {
-    "@types/bun": "catalog:",
     "@keywarden/config": "workspace:*",
+    "@types/bun": "catalog:",
     "typescript": "catalog:"
   },
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"
   },
+  "files": [
+    "src"
+  ],
+  "license": "MIT",
   "name": "@keywarden/solana-client",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "packages/solana-client",
+    "type": "git",
+    "url": "git+https://github.com/beeman/keywarden.git"
+  },
   "scripts": {
     "check-types": "tsc --noEmit"
   },

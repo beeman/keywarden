@@ -1,0 +1,96 @@
+name: Publish
+
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-changesets:
+    if: github.ref == 'refs/heads/main'
+    outputs:
+      has_changesets: ${{ steps.check.outputs.has_changesets }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - id: check
+        name: Check for changesets
+        run: |
+          if ls .changeset/*.md 2>/dev/null | grep -qv 'README.md'; then
+            echo "has_changesets=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changesets=false" >> $GITHUB_OUTPUT
+          fi
+
+  canary:
+    if: github.ref == 'refs/heads/main' && needs.check-changesets.outputs.has_changesets == 'true'
+    needs: check-changesets
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup Environment
+        uses: ./.github/actions/setup
+
+      - name: Build
+        run: bun run build
+
+      - name: Check keywarden package
+        run: bunx publint run packages/cli --pack bun
+
+      - name: Check solana-client package
+        run: bunx publint run packages/solana-client --pack bun
+
+      - name: Create canary version
+        run: bunx changeset version --snapshot canary
+
+      - env:
+          NPM_CONFIG_PROVENANCE: true
+        name: Publish canary to NPM
+        run: bunx changeset publish --tag canary
+
+  publish:
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Environment
+        uses: ./.github/actions/setup
+
+      - name: Build
+        run: bun run build
+
+      - name: Check keywarden package
+        run: bunx publint run packages/cli --pack bun
+
+      - name: Check solana-client package
+        run: bunx publint run packages/solana-client --pack bun
+
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+        name: Publish to NPM
+        uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1.8.0
+        with:
+          commit: "chore: update versions"
+          publish: bun run release
+          title: "chore: update versions"
+          version: bun run version
