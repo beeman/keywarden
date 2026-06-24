@@ -5,6 +5,7 @@
     "typescript": "catalog:"
   },
   "name": "generators",
+  "private": true,
   "scripts": {
     "check-types": "tsc --noEmit",
     "test": "bun ./smoke-test.ts"
