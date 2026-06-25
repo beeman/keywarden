@@ -2,6 +2,10 @@
 
 A full-stack starter kit for building mobile apps on Solana. Built with Expo, React Native, and modern TypeScript tooling.
 
+## Prototype Security Notice
+
+Keywarden v0.1 is unaudited prototype software. Test with generated devnet keys first, keep your original keypair file backups, and do not entrust high-value mainnet secrets to Keywarden until focused security review, device testing, dependency review, and an external audit are complete.
+
 ## What's Included
 
 - **Backend** — Hono API with oRPC for type-safe APIs

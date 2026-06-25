@@ -1,0 +1,38 @@
+{
+  "dependencies": {
+    "@keywarden/core": "workspace:*",
+    "@noble/curves": "^2.0.1",
+    "bs58": "^6.0.0"
+  },
+  "description": "Solana CLI keypair parsing for Keywarden.",
+  "devDependencies": {
+    "@keywarden/config": "workspace:*",
+    "@types/bun": "catalog:",
+    "typescript": "catalog:"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "license": "MIT",
+  "name": "@keywarden/solana",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "packages/keywarden-solana",
+    "type": "git",
+    "url": "git+https://github.com/beeman/keywarden.git"
+  },
+  "scripts": {
+    "check-types": "tsc -p tsconfig.json --noEmit",
+    "test": "bun test test/*.test.ts"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "0.0.0"
+}
