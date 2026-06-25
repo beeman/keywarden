@@ -40,6 +40,7 @@
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "release": "bun run build && changeset publish",
+    "relay:smoke": "bun run --cwd packages/keywarden-nostr relay:smoke",
     "rename": "bun scripts/rename.ts",
     "ruler:apply": "bunx @intellectronica/ruler@latest apply --local-only",
     "setup": "bun run scripts/copy-env.ts && bun ruler:apply",

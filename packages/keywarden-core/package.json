@@ -1,0 +1,36 @@
+{
+  "dependencies": {
+    "zod": "catalog:"
+  },
+  "description": "Platform-neutral Keywarden protocol schemas and helpers.",
+  "devDependencies": {
+    "@keywarden/config": "workspace:*",
+    "@types/bun": "catalog:",
+    "typescript": "catalog:"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "license": "MIT",
+  "name": "@keywarden/core",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "packages/keywarden-core",
+    "type": "git",
+    "url": "git+https://github.com/beeman/keywarden.git"
+  },
+  "scripts": {
+    "check-types": "tsc -p tsconfig.json --noEmit",
+    "test": "bun test test/*.test.ts"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "0.0.0"
+}

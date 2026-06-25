@@ -8,9 +8,8 @@ import { ShellUiHeader } from '../ui/shell-ui-header'
 
 const links = [
   { label: 'Home', to: '/' },
+  { label: 'Import', to: '/import' },
   { label: 'Dashboard', to: '/dashboard' },
-  { label: 'Todos', to: '/todos' },
-  { label: 'AI Chat', to: '/ai' },
   { label: 'Solana', to: '/solana' },
 ] as const
 

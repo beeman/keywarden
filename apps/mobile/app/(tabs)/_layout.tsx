@@ -40,6 +40,7 @@ export default function TabLayout() {
         name="examples"
         options={{
           headerShown: false,
+          href: null,
           title: 'Examples',
           tabBarIcon: ({ focused, ...props }) => (
             <Ionicons name={focused ? 'apps' : 'apps-outline'} {...props} />
